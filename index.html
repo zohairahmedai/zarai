@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZarAI — AI-Powered Multilingual Chatbot for Small Farmers in Pakistan</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#2e7d32;--primary-light:#4caf50;--primary-dark:#1b5e20;--accent:#66bb6a;--bg:#f8faf8;--white:#fff;--text:#333;--text-light:#666;--section-bg:#f1f8e9}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);line-height:1.7;background:var(--bg)}
+a{color:var(--primary);text-decoration:none}
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,0.08);padding:0.8rem 2rem;display:flex;align-items:center;justify-content:space-between}
+nav .logo{font-size:1.5rem;font-weight:700;color:var(--primary-dark)}
+nav .logo span{color:var(--primary-light)}
+nav ul{list-style:none;display:flex;gap:1.5rem;flex-wrap:wrap}
+nav ul li a{font-size:0.9rem;font-weight:500;color:var(--text);transition:color 0.3s}
+nav ul li a:hover{color:var(--primary)}
+.hamburger{display:none;font-size:1.5rem;cursor:pointer;color:var(--primary-dark)}
+/* HERO */
+.hero{margin-top:70px;padding:6rem 2rem;background:linear-gradient(135deg,#1b5e20 0%,#388e3c 50%,#2e7d32 100%);color:#fff;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:30px 30px;animation:drift 20s linear infinite}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(30px,30px)}}
+.hero h1{font-size:2.8rem;margin-bottom:1rem;position:relative}
+.hero .tagline{font-size:1.2rem;opacity:0.9;max-width:700px;margin:0 auto 2rem;position:relative}
+.hero .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:0.8rem;position:relative}
+.hero .badges span{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:0.4rem 1rem;border-radius:20px;font-size:0.85rem}
+/* SECTIONS */
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-title{text-align:center;margin-bottom:3rem}
+.section-title h2{font-size:2rem;color:var(--primary-dark);margin-bottom:0.5rem}
+.section-title p{color:var(--text-light);max-width:600px;margin:0 auto}
+.alt-bg{background:var(--section-bg)}
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.card{background:var(--white);border-radius:12px;padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #e8f5e9;transition:transform 0.3s,box-shadow 0.3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(46,125,50,0.12)}
+.card i{font-size:2rem;color:var(--primary);margin-bottom:1rem}
+.card h3{margin-bottom:0.5rem;color:var(--primary-dark)}
+.card p{font-size:0.92rem;color:var(--text-light)}
+/* WHY */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.why-grid .text h3{color:var(--primary-dark);margin-bottom:0.8rem;font-size:1.3rem}
+.why-grid .text p{margin-bottom:1rem;color:var(--text-light)}
+.why-grid .visual{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:16px;padding:3rem;text-align:center;font-size:4rem}
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem;border-left:3px solid var(--accent)}
+.timeline .item{margin-bottom:2rem;position:relative}
+.timeline .item::before{content:'';width:14px;height:14px;background:var(--primary);border-radius:50%;position:absolute;left:-2.55rem;top:0.3rem}
+.timeline .item h4{color:var(--primary-dark);margin-bottom:0.3rem}
+/* PHASE */
+.phase{margin-bottom:2.5rem;padding:2rem;background:var(--white);border-radius:12px;border-left:4px solid var(--primary);box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.phase h3{color:var(--primary-dark);margin-bottom:0.8rem}
+.phase ul{padding-left:1.2rem;color:var(--text-light)}
+.phase ul li{margin-bottom:0.4rem}
+/* TECH CARDS */
+.tech-card{text-align:center;padding:1.5rem}
+.tech-card .icon{width:60px;height:60px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem;color:var(--primary-dark)}
+/* TEAM */
+.team-card{text-align:center;padding:2rem}
+.team-card .avatar{width:100px;height:100px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff}
+.team-card h3{font-size:1rem}
+.team-card .role{color:var(--primary);font-size:0.85rem;font-weight:600}
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.gallery-item{aspect-ratio:4/3;background:linear-gradient(135deg,#e8f5e9,#a5d6a7);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--primary-dark)}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.contact-info .item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem}
+.contact-info .item i{color:var(--primary);font-size:1.2rem;margin-top:0.2rem}
+.contact-form input,.contact-form textarea{width:100%;padding:0.8rem 1rem;border:1px solid #c8e6c9;border-radius:8px;margin-bottom:1rem;font-family:inherit;font-size:0.95rem}
+.contact-form textarea{min-height:120px;resize:vertical}
+.btn{background:var(--primary);color:#fff;border:none;padding:0.8rem 2rem;border-radius:8px;font-size:1rem;cursor:pointer;transition:background 0.3s}
+.btn:hover{background:var(--primary-dark)}
+/* FOOTER */
+footer{background:var(--primary-dark);color:#fff;text-align:center;padding:2.5rem 2rem}
+footer p{opacity:0.8;font-size:0.9rem}
+/* RESPONSIVE */
+@media(max-width:768px){
+nav ul{display:none}
+.hamburger{display:block}
+.hero h1{font-size:1.8rem}
+.why-grid,.contact-grid{grid-template-columns:1fr}
+.hero{padding:4rem 1.5rem}
+section{padding:3rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+<div class="logo">Zar<span>AI</span></div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#objectives">Objectives</a></li>
+<li><a href="#tech">Technologies</a></li>
+<li><a href="#dataset">Datasets</a></li>
+<li><a href="#team">Team</a></li>
+<li><a href="#publications">Publications</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+<div class="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<h1>ZarAI: An AI-Powered Multilingual Chatbot &amp; Visual Advisory System for Small Farmers in Pakistan</h1>
+<p class="tagline">A Multimodal AI Chatbot and Visual Advisory Platform for Small Farmers in Pakistan</p>
+<div class="badges">
+<span><i class="fas fa-language"></i> Urdu + English</span>
+<span><i class="fas fa-image"></i> Image-Based Advisory</span>
+<span><i class="fas fa-robot"></i> LLM-Powered</span>
+<span><i class="fas fa-eye"></i> Computer Vision</span>
+<span><i class="fas fa-database"></i> RAG Pipeline</span>
+<span><i class="fas fa-comments"></i> Multimodal AI</span>
+</div>
+</section>
+
+<!-- PROJECT OVERVIEW -->
+<section>
+<div class="container">
+<div class="section-title">
+<h2>Project Overview</h2>
+<p>Empowering Pakistan's small farmers through accessible, multilingual AI advisory technology</p>
+</div>
+<div class="card-grid">
+<div class="card"><i class="fas fa-brain"></i><h3>Natural Language Processing</h3><p>Advanced NLP pipelines enabling Urdu and English conversational interfaces for farmers with varying literacy levels.</p></div>
+<div class="card"><i class="fas fa-server"></i><h3>Large Language Models</h3><p>Fine-tuned Qwen and Llama models delivering contextual, culturally relevant agricultural guidance.</p></div>
+<div class="card"><i class="fas fa-search"></i><h3>RAG Architecture</h3><p>Retrieval-Augmented Generation ensuring responses are grounded in verified agricultural knowledge bases.</p></div>
+<div class="card"><i class="fas fa-camera"></i><h3>Computer Vision</h3><p>Image-based crop disease diagnosis enabling farmers to get instant visual analysis of plant health issues.</p></div>
+<div class="card"><i class="fas fa-layer-group"></i><h3>Multimodal AI</h3><p>Seamless integration of text and image inputs for comprehensive agricultural advisory generation.</p></div>
+<div class="card"><i class="fas fa-mobile-alt"></i><h3>Accessible Interface</h3><p>Designed for low-resource devices, ensuring small farmers can access AI advisory from basic smartphones.</p></div>
+</div>
+</div>
+</section>
+
+<!-- WHY ZARAI -->
+<section class="alt-bg">
+<div class="container">
+<div class="section-title"><h2>Why ZarAI?</h2><p>Addressing critical gaps in agricultural technology access for Pakistan's farming communities</p></div>
+<div class="why-grid">
+<div class="text">
+<h3>Pakistan's Agriculture Challenges</h3>
+<p>Pakistan's agriculture sector employs over 38% of the labor force, yet small farmers lack access to timely, accurate crop advisory. Most existing systems are English-only, text-based, and unsuitable for rural communities.</p>
+<h3>Lack of Localized Digital Advisory</h3>
+<p>Current agricultural AI tools do not support Urdu, ignore local crop varieties, and fail to address the specific pest and disease pressures of Pakistan's agro-ecological zones.</p>
+<h3>AI for Small Farmers</h3>
+<p>ZarAI bridges this gap by delivering a multilingual, multimodal advisory system that understands local context, supports voice and image input, and provides actionable guidance in the farmer's own language.</p>
+</div>
+<div class="visual">🌾🤖</div>
+</div>
+
+<div style="margin-top:3rem">
+<h3 style="color:var(--primary-dark);margin-bottom:1.5rem;text-align:center">Project Timeline</h3>
+<div class="timeline">
+<div class="item"><h4>Phase 1 — Data Collection & Preparation</h4><p>Months 1–4: Agricultural dataset curation, Urdu query corpus development</p></div>
+<div class="item"><h4>Phase 2 — RAG Knowledge Base</h4><p>Months 3–6: Document processing, embedding generation, vector DB setup</p></div>
+<div class="item"><h4>Phase 3 — LLM Chatbot Development</h4><p>Months 5–9: Model fine-tuning, translation pipeline, conversational AI</p></div>
+<div class="item"><h4>Phase 4 — Computer Vision Module</h4><p>Months 7–11: Disease classification, image analysis pipeline</p></div>
+<div class="item"><h4>Phase 5 — Multimodal Integration</h4><p>Months 10–14: Combined text+image advisory system</p></div>
+<div class="item"><h4>Phase 6 — Prototype & Deployment</h4><p>Months 13–18: User testing, mobile app development, field trials</p></div>
+</div>
+</div>
+
+<div class="card-grid" style="margin-top:2rem">
+<div class="card"><i class="fas fa-university"></i><h3>Affiliated Institution</h3><p>Department of Artificial Intelligence &amp; Data Science<br>FAST National University of Computer &amp; Emerging Sciences (NUCES), Islamabad</p></div>
+<div class="card"><i class="fas fa-user-tie"></i><h3>Principal Investigator</h3><p>Dr. Zohair Ahmed<br>Assistant Professor, Dept. of AI &amp; Data Science</p></div>
+<div class="card"><i class="fas fa-coins"></i><h3>Funding</h3><p>Supported under FRGS Faculty Research Support Program<br>FAST-NUCES</p></div>
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<div class="section-title"><h2>About the Project</h2><p>Research motivation, problem statement, and societal impact</p></div>
+<div style="max-width:800px;margin:0 auto">
+<h3 style="color:var(--primary-dark);margin-bottom:1rem">Research Motivation</h3>
+<p style="margin-bottom:1.5rem;color:var(--text-light)">Agriculture is the backbone of Pakistan's economy, contributing approximately 19% to GDP. However, small-scale farmers — who constitute over 60% of farming households — face severe challenges including pest outbreaks, disease identification difficulties, and limited access to expert advisory services. The existing extension services are underfunded and unable to reach millions of farmers in remote areas.</p>
+<h3 style="color:var(--primary-dark);margin-bottom:1rem">Research Problem</h3>
+<p style="margin-bottom:1.5rem;color:var(--text-light)">There is no comprehensive AI-powered agricultural advisory system that combines multilingual conversational AI (Urdu + English), image-based crop disease diagnosis, and retrieval-augmented knowledge delivery in a single platform tailored for Pakistan's agricultural context.</p>
+<h3 style="color:var(--primary-dark);margin-bottom:1rem">Expected Societal Impact</h3>
+<p style="margin-bottom:1.5rem;color:var(--text-light)">ZarAI aims to democratize agricultural knowledge access, reduce crop losses through early disease detection, improve farmer decision-making, and contribute to food security — directly supporting UN SDG 2 (Zero Hunger) and SDG 9 (Industry, Innovation & Infrastructure).</p>
+<div class="card-grid" style="margin-top:2rem">
+<div class="card" style="text-align:center"><i class="fas fa-globe"></i><h3>SDG 2: Zero Hunger</h3><p>Supporting food security through AI-assisted farming</p></div>
+<div class="card" style="text-align:center"><i class="fas fa-laptop-code"></i><h3>Digital Agriculture</h3><p>Bridging the digital divide for rural communities</p></div>
+<div class="card" style="text-align:center"><i class="fas fa-heart"></i><h3>AI for Social Good</h3><p>Responsible AI deployment for underserved populations</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="alt-bg" id="architecture">
+<div class="container">
+<div class="section-title"><h2>Proposed System Architecture</h2><p>Complete pipeline from data collection to multimodal advisory deployment</p></div>
+
+<div class="phase"><h3><i class="fas fa-database"></i> Phase 1 — Data Collection</h3><ul><li>Crop disease image datasets (wheat, rice, cotton, tomato, maize)</li><li>Agricultural knowledge documents from Pakistan agricultural research sources</li><li>Bilingual (Urdu-English) agricultural query corpus development</li><li>Expert-validated Q&A pairs for training and evaluation</li></ul></div>
+
+<div class="phase"><h3><i class="fas fa-cubes"></i> Phase 2 — RAG Knowledge Base</h3><ul><li>Document chunking with semantic-aware splitting strategies</li><li>Dense embeddings using multilingual sentence transformers</li><li>FAISS vector database for efficient similarity search</li><li>Hybrid retrieval combining dense and sparse methods</li></ul></div>
+
+<div class="phase"><h3><i class="fas fa-comments"></i> Phase 3 — LLM Chatbot</h3><ul><li>Qwen/Llama model integration with agricultural domain adaptation</li><li>Multilingual chatbot supporting Urdu and English conversations</li><li>Translation pipeline for seamless language switching</li><li>Context-aware response generation with RAG grounding</li></ul></div>
+
+<div class="phase"><h3><i class="fas fa-eye"></i> Phase 4 — Computer Vision</h3><ul><li>Crop disease classification using fine-tuned vision models</li><li>Multi-class image analysis for pest and disease identification</li><li>Severity assessment and progression tracking</li><li>Integration with knowledge base for treatment recommendations</li></ul></div>
+
+<div class="phase"><h3><i class="fas fa-project-diagram"></i> Phase 5 — Multimodal Integration</h3><ul><li>Combined image + text interaction pipeline</li><li>Visual question answering for crop health queries</li><li>AI advisory generation combining visual diagnosis with contextual knowledge</li><li>Confidence scoring and uncertainty quantification</li></ul></div>
+
+<div class="phase"><h3><i class="fas fa-rocket"></i> Phase 6 — Prototype Development</h3><ul><li>Gradio/Streamlit web prototype for initial testing</li><li>FastAPI backend for scalable deployment</li><li>Future Flutter mobile application for field use</li><li>User testing with farming communities in Punjab and Sindh</li></ul></div>
+
+<!-- Architecture Diagram Placeholder -->
+<div style="background:#fff;border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;border:2px dashed var(--accent)">
+<p style="font-size:1.1rem;color:var(--primary-dark);font-weight:600;margin-bottom:1rem">System Architecture Diagram</p>
+<div style="font-size:0.9rem;color:var(--text-light);max-width:600px;margin:0 auto">
+<p><strong>Input Layer:</strong> Farmer (Text Query / Image Upload)</p>
+<p>↓</p>
+<p><strong>Processing:</strong> NLP Pipeline → Language Detection → Translation</p>
+<p>↓</p>
+<p><strong>Core AI:</strong> RAG Retrieval | LLM Generation | Vision Analysis</p>
+<p>↓</p>
+<p><strong>Integration:</strong> Multimodal Fusion & Advisory Generation</p>
+<p>↓</p>
+<p><strong>Output:</strong> Actionable Advice in Urdu/English + Visual Annotations</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- OBJECTIVES -->
+<section id="objectives">
+<div class="container">
+<div class="section-title"><h2>Research Objectives</h2><p>Core goals driving the ZarAI research initiative</p></div>
+<div class="card-grid">
+<div class="card" style="border-top:3px solid var(--primary)"><i class="fas fa-language"></i><h3>Multilingual Agricultural Chatbot</h3><p>Develop a conversational AI system supporting Urdu and English for natural farmer interactions.</p></div>
+<div class="card" style="border-top:3px solid var(--primary)"><i class="fas fa-seedling"></i><h3>Visual Crop Diagnosis</h3><p>Build image-based disease identification for major crops in Pakistan's agricultural zones.</p></div>
+<div class="card" style="border-top:3px solid var(--primary)"><i class="fas fa-puzzle-piece"></i><h3>Multimodal AI Integration</h3><p>Combine text and vision modalities for comprehensive, context-aware advisory generation.</p></div>
+<div class="card" style="border-top:3px solid var(--primary)"><i class="fas fa-book-open"></i><h3>RAG-Based Advisory</h3><p>Ground AI responses in verified agricultural knowledge through retrieval-augmented generation.</p></div>
+<div class="card" style="border-top:3px solid var(--primary)"><i class="fas fa-universal-access"></i><h3>Farmer Accessibility</h3><p>Ensure the system is usable by farmers with limited digital literacy and low-resource devices.</p></div>
+<div class="card" style="border-top:3px solid var(--primary)"><i class="fas fa-flag"></i><h3>Urdu Language Support</h3><p>Pioneer Urdu-first agricultural AI, addressing the critical gap in local language technology.</p></div>
+</div>
+</div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section class="alt-bg" id="tech">
+<div class="container">
+<div class="section-title"><h2>Technologies Used</h2><p>State-of-the-art tools powering the ZarAI platform</p></div>
+<div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+<div class="card tech-card"><div class="icon"><i class="fab fa-python"></i></div><h3>Python</h3><p>Core development language for all AI/ML pipelines</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-fire"></i></div><h3>PyTorch</h3><p>Deep learning framework for model training and inference</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-face-smile"></i></div><h3>Hugging Face</h3><p>Model hub and transformers library for NLP and vision</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-link"></i></div><h3>LangChain</h3><p>LLM orchestration and RAG pipeline framework</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-magnifying-glass"></i></div><h3>FAISS</h3><p>Vector similarity search for efficient knowledge retrieval</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-robot"></i></div><h3>Qwen / Llama</h3><p>Large language models for multilingual generation</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-bolt"></i></div><h3>FastAPI</h3><p>High-performance API backend for model serving</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-desktop"></i></div><h3>Gradio</h3><p>Rapid prototyping of interactive ML demos</p></div>
+<div class="card tech-card"><div class="icon"><i class="fas fa-mobile-screen"></i></div><h3>Flutter</h3><p>Cross-platform mobile app (future deployment phase)</p></div>
+</div>
+</div>
+</section>
+
+<!-- DATASETS -->
+<section id="dataset">
+<div class="container">
+<div class="section-title"><h2>Datasets &amp; Knowledge Resources</h2><p>Curated agricultural data powering ZarAI's intelligence</p></div>
+<div class="card-grid">
+<div class="card"><i class="fas fa-wheat-awn"></i><h3>Crop Disease Images</h3><p>Curated datasets for wheat rust, rice blast, cotton leaf curl, and tomato blight with expert annotations.</p></div>
+<div class="card"><i class="fas fa-file-alt"></i><h3>Agricultural Knowledge Docs</h3><p>Pakistan agricultural research publications, extension service bulletins, and crop management guidelines.</p></div>
+<div class="card"><i class="fas fa-language"></i><h3>Multilingual Query Corpus</h3><p>Bilingual Urdu-English agricultural question-answer pairs for chatbot training and evaluation.</p></div>
+<div class="card"><i class="fas fa-map-marked-alt"></i><h3>Regional Crop Data</h3><p>Zone-specific crop calendars, pest prevalence data, and climate-adapted farming practices for Punjab and Sindh.</p></div>
+</div>
+<div style="margin-top:2rem;text-align:center">
+<p style="color:var(--text-light)"><strong>Target Crops:</strong> Wheat • Rice • Cotton • Tomato • Maize • Sugarcane • Mango</p>
+</div>
+</div>
+</section>
+
+<!-- TEAM -->
+<section class="alt-bg" id="team">
+<div class="container">
+<div class="section-title"><h2>Research Team</h2><p>Dedicated researchers advancing AI for agricultural empowerment</p></div>
+<div class="card-grid">
+<div class="card team-card"><div class="avatar"><i class="fas fa-user"></i></div><h3>Dr. Zohair Ahmed</h3><p class="role">Principal Investigator</p><p>AI, NLP, Machine Learning</p></div>
+<div class="card team-card"><div class="avatar"><i class="fas fa-user"></i></div><h3>[Co-PI Name]</h3><p class="role">Co-Principal Investigator</p><p>Computer Vision, Agriculture Informatics</p></div>
+<div class="card team-card"><div class="avatar"><i class="fas fa-user-graduate"></i></div><h3>[Student Name]</h3><p class="role">Research Assistant (MS/PhD)</p><p>NLP, Large Language Models</p></div>
+<div class="card team-card"><div class="avatar"><i class="fas fa-user-graduate"></i></div><h3>[Student Name]</h3><p class="role">Research Assistant (MS)</p><p>Computer Vision, Image Classification</p></div>
+<div class="card team-card"><div class="avatar"><i class="fas fa-user-graduate"></i></div><h3>[Student Name]</h3><p class="role">Research Assistant (BS)</p><p>Frontend Development, UI/UX</p></div>
+<div class="card team-card"><div class="avatar"><i class="fas fa-handshake"></i></div><h3>[Collaborator Name]</h3><p class="role">External Collaborator</p><p>Agricultural Sciences, Extension Services</p></div>
+</div>
+</div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+<div class="container">
+<div class="section-title"><h2>Publications &amp; Outputs</h2><p>Research contributions and deliverables</p></div>
+<div style="max-width:800px;margin:0 auto">
+<div class="phase"><h3><i class="fas fa-journal-whills"></i> Journal Papers</h3><ul><li>[Upcoming] "ZarAI: A Multimodal RAG-based Agricultural Chatbot for Urdu-Speaking Farmers" — <em>Target: Expert Systems with Applications, 2025</em></li><li>[Planned] "Multilingual Crop Disease Diagnosis Using Vision-Language Models" — <em>Target: Computers and Electronics in Agriculture, 2026</em></li></ul></div>
+<div class="phase"><h3><i class="fas fa-chalkboard-teacher"></i> Conference Papers</h3><ul><li>[Planned] ACL/EMNLP Workshop on NLP for Agriculture — 2025</li><li>[Planned] CVPR Workshop on Computer Vision for Agriculture — 2026</li></ul></div>
+<div class="phase"><h3><i class="fas fa-box-open"></i> Datasets &amp; Prototypes</h3><ul><li>[In Progress] Urdu Agricultural QA Dataset</li><li>[In Progress] Pakistan Crop Disease Image Benchmark</li><li>[Planned] ZarAI Chatbot Prototype (Gradio Demo)</li><li>[Planned] ZarAI Mobile App (Flutter)</li></ul></div>
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section class="alt-bg" id="gallery">
+<div class="container">
+<div class="section-title"><h2>Project Gallery</h2><p>Visual highlights from ZarAI research and development</p></div>
+<div class="gallery-grid">
+<div class="gallery-item"><i class="fas fa-tractor"></i></div>
+<div class="gallery-item"><i class="fas fa-leaf"></i></div>
+<div class="gallery-item"><i class="fas fa-robot"></i></div>
+<div class="gallery-item"><i class="fas fa-chart-line"></i></div>
+<div class="gallery-item"><i class="fas fa-microscope"></i></div>
+<div class="gallery-item"><i class="fas fa-comments"></i></div>
+<div class="gallery-item"><i class="fas fa-satellite-dish"></i></div>
+<div class="gallery-item"><i class="fas fa-wheat-awn"></i></div>
+</div>
+<p style="text-align:center;margin-top:1.5rem;color:var(--text-light);font-style:italic">Gallery will be updated with research screenshots, field visits, and prototype demos as the project progresses.</p>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+<div class="section-title"><h2>Contact Us</h2><p>Interested in collaboration or have questions? Get in touch.</p></div>
+<div class="contact-grid">
+<div class="contact-info">
+<div class="item"><i class="fas fa-user-tie"></i><div><strong>Principal Investigator</strong><br>Dr. Zohair Ahmed, Assistant Professor</div></div>
+<div class="item"><i class="fas fa-university"></i><div><strong>Affiliation</strong><br>Department of Artificial Intelligence &amp; Data Science<br>FAST National University of Computer &amp; Emerging Sciences (NUCES), Islamabad</div></div>
+<div class="item"><i class="fas fa-flask"></i><div><strong>Research Lab</strong><br>AI &amp; Data Science Research Lab, FAST-NUCES</div></div>
+<div class="item"><i class="fas fa-envelope"></i><div><strong>Email</strong><br>zohair.ahmed@nu.edu.pk</div></div>
+<div class="item"><i class="fas fa-map-marker-alt"></i><div><strong>Address</strong><br>FAST-NUCES, A.K. Brohi Road, H-11/4, Islamabad, Pakistan</div></div>
+</div>
+<div>
+<form class="contact-form">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<input type="text" placeholder="Subject">
+<textarea placeholder="Your Message — Collaboration inquiries, student opportunities, or general questions" required></textarea>
+<button class="btn" type="submit">Send Message</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p><strong>ZarAI</strong> — AI-Powered Multilingual Chatbot &amp; Visual Advisory System for Small Farmers in Pakistan</p>
+<p style="margin-top:0.5rem">© 2024–2026 | FAST National University of Computer &amp; Emerging Sciences (NUCES), Islamabad</p>
+<p style="margin-top:0.5rem;font-size:0.8rem">Supported under FRGS Faculty Research Support Program | All Rights Reserved</p>
+</footer>
+
+<script>
+document.querySelector('.hamburger').addEventListener('click',()=>{const ul=document.querySelector('nav ul');ul.style.display=ul.style.display==='flex'?'none':'flex';ul.style.flexDirection='column';ul.style.position='absolute';ul.style.top='60px';ul.style.right='2rem';ul.style.background='#fff';ul.style.padding='1rem';ul.style.borderRadius='8px';ul.style.boxShadow='0 4px 20px rgba(0,0,0,0.1)'});
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})}));
+</script>
+</body>
+</html>
